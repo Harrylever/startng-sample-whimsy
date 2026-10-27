@@ -9,6 +9,7 @@
 <style>
 /* Layout: start.ng's own cream-and-lime page, reimagined as one Lagos street: hero skyline with a danfo, market-stall game grid, bus-stop steps, an evening-lights tournament band. */
 :root {
+  color-scheme: light;
   --bg: #f6f5ee; --card: #fffefa; --ink: #292a23; --muted: #62635a; --line: #e4e2d6;
   --lime: #d8fd71; --danfo: #ffc928; --orange: #ff7a2f; --green: #1f8a4c; --cream: #fff7dc;
   --sky: #e8f5ff; --sun: #d8fd71; --b1: #f2b880; --b2: #ead7a6; --b3: #c5d9a2; --road: #5b5c52; --win: rgba(255,255,255,.75);
@@ -16,13 +17,6 @@
   --display: "Bowlby One", "Arial Black", "Helvetica Neue", Arial, sans-serif;
   --sans: "Helvetica Neue", Helvetica, Arial, system-ui, sans-serif;
   --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
-}
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --bg: #1d1e19; --card: #2a2b24; --ink: #f6f5ee; --muted: #b3b4a8; --line: #46473d;
-    --sky: #151726; --sun: #f6f5ee; --b1: #3d3c34; --b2: #46473d; --b3: #34382c; --road: #12130f; --win: #ffd45a;
-    --band: #0f100d; --band-ink: #f6f5ee; --cream: #3a3524; color-scheme: dark;
-  }
 }
 :root[data-theme="dark"] {
   --bg: #1d1e19; --card: #2a2b24; --ink: #f6f5ee; --muted: #b3b4a8; --line: #46473d;
@@ -244,7 +238,7 @@ h2 { font-size: clamp(1.7rem, 4.5vw, 2.3rem); letter-spacing: -.035em; margin: 0
 
   document.getElementById("theme").addEventListener("click", function () {
     var root = document.documentElement;
-    var dark = root.dataset.theme ? root.dataset.theme === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;
+    var dark = root.dataset.theme === "dark";
     root.dataset.theme = dark ? "light" : "dark";
   });
 })();

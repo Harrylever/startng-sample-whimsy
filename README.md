@@ -10,7 +10,7 @@ Start.ng is a free browser-game platform for the HNG community. This version tur
 - **Games as market stalls.** Each game gets a striped awning and a hand-painted-style sign. The Hangout is the glowing stall at the end of the street.
 - **Bus-stop steps.** The four steps for publishing a game are shown as numbered bus-stop plates.
 - **Evening tournament band.** String lights and a live Lagos clock, with the daily tournament description.
-- **Day and night.** A theme toggle switches between a day street and a night market. The page follows the system theme by default.
+- **Day and night.** A theme toggle switches between a day street and a night market. Light is the default.
 
 ## Run it
 
