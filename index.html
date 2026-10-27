@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Start.ng Lagos Street: a whimsical redesign of the Start.ng landing page.">
+<title>Start.ng Lagos Street</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bowlby+One&display=swap">
+<style>
+/* Layout: start.ng's own cream-and-lime page, reimagined as one Lagos street: hero skyline with a danfo, market-stall game grid, bus-stop steps, an evening-lights tournament band. */
+:root {
+  --bg: #f6f5ee; --card: #fffefa; --ink: #292a23; --muted: #62635a; --line: #e4e2d6;
+  --lime: #d8fd71; --danfo: #ffc928; --orange: #ff7a2f; --green: #1f8a4c; --cream: #fff7dc;
+  --sky: #e8f5ff; --sun: #d8fd71; --b1: #f2b880; --b2: #ead7a6; --b3: #c5d9a2; --road: #5b5c52; --win: rgba(255,255,255,.75);
+  --band: #292a23; --band-ink: #f6f5ee; --bulb: #ffd45a; --glow: rgba(216,253,113,.7);
+  --display: "Bowlby One", "Arial Black", "Helvetica Neue", Arial, sans-serif;
+  --sans: "Helvetica Neue", Helvetica, Arial, system-ui, sans-serif;
+  --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #1d1e19; --card: #2a2b24; --ink: #f6f5ee; --muted: #b3b4a8; --line: #46473d;
+    --sky: #151726; --sun: #f6f5ee; --b1: #3d3c34; --b2: #46473d; --b3: #34382c; --road: #12130f; --win: #ffd45a;
+    --band: #0f100d; --band-ink: #f6f5ee; --cream: #3a3524; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #1d1e19; --card: #2a2b24; --ink: #f6f5ee; --muted: #b3b4a8; --line: #46473d;
+  --sky: #151726; --sun: #f6f5ee; --b1: #3d3c34; --b2: #46473d; --b3: #34382c; --road: #12130f; --win: #ffd45a;
+  --band: #0f100d; --band-ink: #f6f5ee; --cream: #3a3524; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--sans); line-height: 1.5; }
+a { color: inherit; text-decoration: none; }
+:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; border-radius: 6px; }
+.wrap { max-width: 1000px; margin: 0 auto; padding-inline: max(16px, env(safe-area-inset-left, 0px)) max(16px, env(safe-area-inset-right, 0px)); }
+.btn { display: inline-block; background: var(--ink); color: var(--bg); border: 0; border-radius: 10px; padding: 13px 24px; font: 700 1rem var(--sans); cursor: pointer; }
+.btn:hover { transform: translateY(-1px); box-shadow: 3px 3px 0 var(--lime); }
+.btn.ghost { background: var(--card); color: var(--ink); border: 1px solid var(--line); }
+.btn.ghost:hover { border-color: var(--ink); }
+
+/* nav */
+.nav .wrap { display: flex; align-items: center; gap: 10px 22px; padding-block: 18px; flex-wrap: wrap; }
+.logo { font-weight: 800; font-size: 1.3rem; letter-spacing: -.03em; display: flex; align-items: center; gap: 8px; margin-right: auto; }
+.logo i { width: 26px; height: 26px; border-radius: 7px; background: var(--lime); border: 2px solid var(--ink); display: block; }
+.nav nav { display: flex; gap: 22px; flex-wrap: wrap; }
+.nav nav a { color: var(--muted); font-size: .95rem; }
+.nav nav a:hover { color: var(--ink); }
+.theme { background: var(--card); border: 1px solid var(--line); border-radius: 999px; color: var(--ink); padding: 7px 14px; font: 600 .85rem var(--sans); cursor: pointer; }
+
+/* hero */
+.hero { text-align: center; padding-block: 40px 8px; }
+.eyebrow { font-family: var(--mono); text-transform: uppercase; letter-spacing: .24em; font-size: .78rem; margin: 0 0 18px; }
+h1 { font-size: clamp(2.7rem, 9vw, 6rem); line-height: .98; letter-spacing: -.055em; font-weight: 800; margin: 0 0 24px; text-wrap: balance; }
+mark { background: linear-gradient(transparent 60%, var(--lime) 60%, var(--lime) 92%, transparent 92%); color: inherit; padding: 0 .06em; }
+.lead { color: var(--muted); font-size: 1.15rem; max-width: 46ch; margin: 0 auto 28px; }
+.actions { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
+.scene { position: relative; width: 100%; aspect-ratio: 4 / 1; min-height: 190px; margin-top: 36px; background: var(--sky); overflow: hidden; border-block: 2px solid var(--ink); }
+.scene > svg.street { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.danfo { position: absolute; bottom: 3%; height: 38%; width: auto; left: 58%; animation: drive 9s cubic-bezier(.3,.6,.3,1) 0.2s 1 both; }
+.wheel { transform-box: fill-box; transform-origin: center; animation: spin .7s linear 13 both; }
+@keyframes drive { from { left: -32%; } to { left: 58%; } }
+@keyframes spin { to { transform: rotate(360deg); } }
+.ankara { height: 26px; background:
+  radial-gradient(circle at 50% 50%, var(--ink) 0 13%, var(--cream) 14% 24%, var(--orange) 25% 36%, transparent 37%),
+  linear-gradient(90deg, var(--danfo) 0 50%, var(--lime) 50% 100%);
+  background-size: 34px 26px; border-bottom: 2px solid var(--ink); }
+
+/* section heads */
+section { padding-top: 72px; }
+.head { display: flex; justify-content: space-between; align-items: baseline; gap: 8px 16px; flex-wrap: wrap; margin-bottom: 8px; }
+h2 { font-size: clamp(1.7rem, 4.5vw, 2.3rem); letter-spacing: -.035em; margin: 0; text-wrap: balance; }
+.count { font-family: var(--mono); font-size: .85rem; color: var(--muted); }
+.sub { color: var(--muted); margin: 0 0 26px; max-width: 56ch; }
+
+/* stalls */
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr)); gap: 26px 18px; }
+.stall { --a1: var(--orange); --a2: var(--cream); position: relative; background: var(--card); border: 1px solid var(--line); border-radius: 0 0 18px 18px; padding: 52px 10px 10px; display: flex; flex-direction: column; gap: 12px; min-width: 0; transition: transform .15s, border-color .15s, box-shadow .15s; }
+.stall:nth-child(4n+2) { --a1: var(--green); }
+.stall:nth-child(4n+3) { --a1: var(--danfo); --a2: var(--ink); }
+.stall:nth-child(4n) { --a1: #3a6fd8; }
+.stall::before { content: ""; position: absolute; left: -2px; right: -2px; top: 0; height: 40px; background: repeating-linear-gradient(90deg, var(--a1) 0 18px, var(--a2) 18px 36px); border: 2px solid var(--ink); border-bottom: 0; border-radius: 6px 6px 0 0; }
+.stall::after { content: ""; position: absolute; left: -2px; right: -2px; top: 38px; height: 12px; background: radial-gradient(circle at 9px 0, var(--a1) 0 9px, transparent 10px) 0 0 / 36px 12px repeat-x, radial-gradient(circle at 27px 0, var(--a2) 0 9px, transparent 10px) 0 0 / 36px 12px repeat-x; filter: drop-shadow(0 2px 0 var(--ink)); }
+.stall:hover { border-color: var(--ink); box-shadow: 5px 5px 0 var(--lime); animation: wobble .5s ease-in-out 1; }
+@keyframes wobble { 25% { transform: rotate(-.7deg) translateY(-2px); } 60% { transform: rotate(.6deg) translateY(-2px); } 100% { transform: rotate(0) translateY(-2px); } }
+.art { aspect-ratio: 16 / 10; border-radius: 12px; display: grid; place-items: center; position: relative; overflow: hidden; }
+.art b { font: 3.4rem/1 var(--display); color: rgba(255,255,255,.92); text-shadow: 0 4px 0 rgba(0,0,0,.22); }
+.sign { position: absolute; left: 50%; top: 14px; transform: translateX(-50%) rotate(-1.2deg); max-width: 88%; background: var(--ink); color: var(--danfo); font: .95rem/1.1 var(--display); letter-spacing: .02em; padding: 8px 14px; border-radius: 6px; border: 2px dashed var(--danfo); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; z-index: 2; }
+.info { padding: 0 6px; display: flex; justify-content: space-between; align-items: center; gap: 10px; min-width: 0; }
+.by { font-family: var(--mono); font-size: .8rem; color: var(--muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.play { flex: none; font-weight: 700; padding: 6px 12px; border-radius: 8px; background: var(--ink); color: var(--bg); font-size: .9rem; }
+.play:hover { background: var(--lime); color: #292a23; }
+.stall.legend { background: linear-gradient(180deg, color-mix(in srgb, var(--lime) 18%, var(--card)), var(--card)); border-color: #b5e63d; box-shadow: 0 0 0 1px rgba(216,253,113,.9), 0 0 18px 3px var(--glow); animation: glow 2.8s ease-in-out infinite; overflow: visible; }
+.stall.legend::before { --a1: var(--lime); --a2: var(--ink); }
+.stall.legend::after { --a1: var(--lime); }
+.stall.legend .art { background: linear-gradient(135deg, #292a23, #4c6a14) !important; }
+.stall.legend .art b { color: var(--lime); text-shadow: 0 0 22px var(--glow); }
+.tagline { position: absolute; right: 14px; bottom: 12px; font-family: var(--mono); font-size: .7rem; text-transform: uppercase; letter-spacing: .12em; background: var(--lime); color: #292a23; padding: 3px 8px; border-radius: 6px; }
+@keyframes glow { 50% { box-shadow: 0 0 0 1px #d8fd71, 0 0 30px 8px rgba(216,253,113,.8); } }
+.more { margin-top: 28px; text-align: center; }
+
+/* bus stops */
+.stops { list-style: none; padding: 0; margin: 28px 0 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 210px), 1fr)); gap: 34px 16px; }
+.stop { position: relative; padding-top: 66px; }
+.stop .post { position: absolute; left: 22px; top: 40px; bottom: -14px; width: 6px; background: var(--ink); border-radius: 3px; }
+.stop .plate { position: absolute; left: 0; top: 0; background: var(--danfo); color: #292a23; border: 2px solid var(--ink); border-radius: 10px; padding: 7px 12px; font: .85rem/1 var(--display); box-shadow: 3px 3px 0 var(--ink); letter-spacing: .03em; }
+.stop .body { margin-left: 44px; background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 14px 16px; min-height: 120px; }
+.stop b { display: block; font-size: 1.1rem; margin-bottom: 4px; }
+.stop span { color: var(--muted); font-size: .95rem; }
+.docs { margin-top: 26px; display: flex; gap: 12px; flex-wrap: wrap; }
+
+/* evening band */
+.evening { margin-top: 80px; background: var(--band); color: var(--band-ink); position: relative; overflow: hidden; padding-block: 90px 56px; border-block: 2px solid var(--ink); }
+.lights { position: absolute; top: 0; left: 0; right: 0; height: 64px; display: flex; justify-content: space-between; padding-inline: 8px; pointer-events: none; }
+.lights::before { content: ""; position: absolute; left: -2%; right: -2%; top: 6px; height: 40px; border-top: 2px solid #6a6b5f; border-radius: 50%; }
+.lights i { position: relative; width: 12px; height: 18px; background: var(--bulb); border-radius: 50% 50% 55% 55%; box-shadow: 0 0 14px 3px rgba(255,212,90,.7); animation: twinkle 2.4s ease-in-out infinite; }
+.lights i:nth-child(odd) { margin-top: 24px; }
+@keyframes twinkle { 50% { opacity: .55; box-shadow: 0 0 6px 1px rgba(255,212,90,.4); } }
+.evening .eyebrow { color: var(--lime); text-align: left; }
+.evening h2 { color: var(--band-ink); max-width: 18ch; }
+.evening p { max-width: 54ch; color: #cfd0c4; font-size: 1.1rem; margin: 16px 0 24px; }
+.evening .row { display: flex; gap: 24px 36px; align-items: center; flex-wrap: wrap; }
+.clock { font-family: var(--mono); background: #1d1e19; border: 2px solid #6a6b5f; border-radius: 12px; padding: 14px 18px; min-width: 190px; }
+.clock small { display: block; color: #a9aa9d; letter-spacing: .12em; text-transform: uppercase; font-size: .7rem; }
+.clock strong { font-size: 1.9rem; color: var(--lime); font-variant-numeric: tabular-nums; }
+.evening .btn { background: var(--lime); color: #292a23; }
+
+.mascots { display: flex; gap: 14px; margin-top: 24px; }
+.mascots svg { width: 64px; height: 64px; }
+.footer { padding-block: 32px 44px; display: flex; justify-content: space-between; gap: 8px 24px; flex-wrap: wrap; color: var(--muted); font-size: .92rem; }
+.footer b { color: var(--ink); }
+
+@media (prefers-reduced-motion: reduce) {
+  .danfo, .wheel, .lights i, .stall.legend, .stall:hover, .btn:hover { animation: none !important; transform: none; }
+  .danfo { left: 58%; }
+  html { scroll-behavior: auto; }
+}
+</style>
+<style>[hidden]{display:none!important}html{-webkit-text-size-adjust:100%}</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="jollof" viewBox="0 0 64 64"><ellipse cx="32" cy="42" rx="28" ry="14" fill="#fff7dc" stroke="#292a23" stroke-width="3"/><path d="M8 40c4-18 44-18 48 0z" fill="#ff7a2f" stroke="#292a23" stroke-width="3"/><circle cx="22" cy="34" r="2" fill="#292a23"/><circle cx="32" cy="30" r="2" fill="#292a23"/><circle cx="42" cy="35" r="2" fill="#292a23"/><path d="M24 20c-3-4 3-6 0-10M36 20c-3-4 3-6 0-10" fill="none" stroke="#a9aa9d" stroke-width="3" stroke-linecap="round"/></symbol>
+  <symbol id="suya" viewBox="0 0 64 64"><path d="M6 58L58 6" stroke="#c9a46a" stroke-width="4" stroke-linecap="round"/><g fill="#a24a22" stroke="#292a23" stroke-width="3" stroke-linejoin="round"><rect x="14" y="36" width="16" height="14" rx="5" transform="rotate(-45 22 43)"/><rect x="27" y="23" width="16" height="14" rx="5" transform="rotate(-45 35 30)"/><rect x="39" y="11" width="14" height="13" rx="5" transform="rotate(-45 46 17)"/></g><circle cx="30" cy="30" r="2" fill="#d8fd71"/><circle cx="42" cy="17" r="2" fill="#d8fd71"/></symbol>
+</svg>
+
+<header class="nav"><div class="wrap">
+  <a class="logo" href="#top"><i aria-hidden="true"></i>start.ng</a>
+  <nav aria-label="Main"><a href="#games">Games</a><a href="#tournament">Tournament</a><a href="#creators">Creators</a><a href="https://start.ng" rel="noopener">Docs</a></nav>
+  <button class="theme" id="theme" type="button" aria-label="Switch between day and night">Day / night</button>
+</div></header>
+
+<main id="top">
+  <div class="wrap hero">
+    <p class="eyebrow">Big imagination. Played everywhere.</p>
+    <h1>Good vibes.<br><mark>Good games.</mark></h1>
+    <p class="lead">Free browser games from the HNG community. Pick a stall, tap play, no download.</p>
+    <div class="actions"><a class="btn" href="#games">Play now</a><a class="btn ghost" href="#creators">Put your game on the street</a></div>
+  </div>
+
+  <div class="scene" role="img" aria-label="Illustration of a Lagos street with a yellow danfo bus driving past market stalls">
+    <svg class="street" viewBox="0 0 1200 300" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+      <circle cx="960" cy="78" r="38" fill="var(--sun)"/>
+      <g fill="var(--b2)"><rect x="20" y="120" width="170" height="140"/><rect x="520" y="104" width="150" height="156"/><rect x="930" y="128" width="210" height="132"/></g>
+      <g fill="var(--b1)"><rect x="190" y="90" width="190" height="170"/><rect x="670" y="136" width="130" height="124"/></g>
+      <g fill="var(--b3)"><rect x="380" y="140" width="140" height="120"/><rect x="800" y="96" width="130" height="164"/></g>
+      <g fill="var(--win)"><rect x="40" y="140" width="22" height="26"/><rect x="80" y="140" width="22" height="26"/><rect x="120" y="140" width="22" height="26"/><rect x="215" y="112" width="22" height="26"/><rect x="255" y="112" width="22" height="26"/><rect x="295" y="112" width="22" height="26"/><rect x="335" y="112" width="22" height="26"/><rect x="215" y="160" width="22" height="26"/><rect x="295" y="160" width="22" height="26"/><rect x="545" y="124" width="22" height="26"/><rect x="585" y="124" width="22" height="26"/><rect x="620" y="124" width="22" height="26"/><rect x="825" y="116" width="22" height="26"/><rect x="865" y="116" width="22" height="26"/><rect x="960" y="150" width="22" height="26"/><rect x="1000" y="150" width="22" height="26"/><rect x="1040" y="150" width="22" height="26"/></g>
+      <g><path d="M400 200h100l-8 -26h-84z" fill="var(--danfo)" stroke="#292a23" stroke-width="3"/><path d="M692 214h90l-7-24h-76z" fill="#ff7a2f" stroke="#292a23" stroke-width="3"/><path d="M100 220h90l-7-24h-76z" fill="#1f8a4c" stroke="#292a23" stroke-width="3"/></g>
+      <rect x="0" y="258" width="1200" height="42" fill="var(--road)"/>
+      <rect x="0" y="256" width="1200" height="4" fill="#292a23"/>
+      <g fill="#f6f5ee" opacity=".85"><rect x="20" y="282" width="60" height="5"/><rect x="180" y="282" width="60" height="5"/><rect x="340" y="282" width="60" height="5"/><rect x="500" y="282" width="60" height="5"/><rect x="660" y="282" width="60" height="5"/><rect x="820" y="282" width="60" height="5"/><rect x="980" y="282" width="60" height="5"/><rect x="1140" y="282" width="60" height="5"/></g>
+    </svg>
+    <svg class="danfo" viewBox="0 0 220 100" aria-hidden="true">
+      <rect x="6" y="14" width="208" height="62" rx="12" fill="#ffc928" stroke="#292a23" stroke-width="4"/>
+      <rect x="6" y="46" width="208" height="12" fill="#292a23"/>
+      <rect x="22" y="22" width="30" height="22" rx="3" fill="#e8f5ff" stroke="#292a23" stroke-width="3"/><rect x="62" y="22" width="30" height="22" rx="3" fill="#e8f5ff" stroke="#292a23" stroke-width="3"/><rect x="102" y="22" width="30" height="22" rx="3" fill="#e8f5ff" stroke="#292a23" stroke-width="3"/><rect x="152" y="20" width="50" height="26" rx="4" fill="#e8f5ff" stroke="#292a23" stroke-width="3"/>
+      <text x="22" y="70" font-family="Arial Black, Arial, sans-serif" font-weight="900" font-size="12" fill="#ffc928" letter-spacing="1">START.NG · GOOD VIBES</text>
+      <rect x="208" y="52" width="10" height="8" rx="2" fill="#d8fd71" stroke="#292a23" stroke-width="2"/>
+      <g class="wheel"><circle cx="52" cy="78" r="15" fill="#292a23"/><circle cx="52" cy="78" r="6" fill="#d8fd71"/><path d="M52 66v24M40 78h24" stroke="#d8fd71" stroke-width="2"/></g>
+      <g class="wheel"><circle cx="168" cy="78" r="15" fill="#292a23"/><circle cx="168" cy="78" r="6" fill="#d8fd71"/><path d="M168 66v24M156 78h24" stroke="#d8fd71" stroke-width="2"/></g>
+    </svg>
+  </div>
+  <div class="ankara" aria-hidden="true"></div>
+
+  <section id="games" class="wrap">
+    <div class="head"><h2>Walk the street</h2><span class="count">187 games</span></div>
+    <p class="sub">Every stall is a game by someone in the community. Step up and play.</p>
+    <div class="grid" id="grid"></div>
+    <div class="more"><a class="btn ghost" href="https://start.ng" rel="noopener">See all 187 games</a></div>
+  </section>
+
+  <section id="creators" class="wrap">
+    <div class="head"><h2>Got a game? Put it on start.ng.</h2></div>
+    <p class="sub">Four stops from your laptop to your own address on the street.</p>
+    <ol class="stops">
+      <li class="stop"><span class="plate">STOP 1</span><span class="post" aria-hidden="true"></span><div class="body"><b>Build it</b><span>Any static browser game: HTML, JavaScript, three.js, Phaser.</span></div></li>
+      <li class="stop"><span class="plate">STOP 2</span><span class="post" aria-hidden="true"></span><div class="body"><b>Push it to GitHub</b><span>Keep the game in a public repository.</span></div></li>
+      <li class="stop"><span class="plate">STOP 3</span><span class="post" aria-hidden="true"></span><div class="body"><b>Publish it</b><span>One API call with your repo link, no key needed.</span></div></li>
+      <li class="stop"><span class="plate">STOP 4</span><span class="post" aria-hidden="true"></span><div class="body"><b>Approve it once</b><span>Open the link you receive and your game goes live at its own subdomain. Every later push updates it.</span></div></li>
+    </ol>
+    <div class="docs"><a class="btn" href="https://start.ng" rel="noopener">Read the docs</a><a class="btn ghost" href="https://start.ng" rel="noopener">Docs for your AI (.md)</a></div>
+    <div class="mascots" aria-hidden="true"><svg><use href="#jollof"/></svg><svg><use href="#suya"/></svg></div>
+  </section>
+
+  <section id="tournament" class="evening">
+    <div class="lights" id="lights" aria-hidden="true"></div>
+    <div class="wrap">
+      <p class="eyebrow">Daily tournament</p>
+      <h2>When the lights come on, the best player wins.</h2>
+      <p>Every day a few start.ng games are picked for 24 hours, and the best player wins. Points count toward the overall leaderboard.</p>
+      <div class="row">
+        <div class="clock"><small>Right now in Lagos</small><strong id="clock">--:--:--</strong></div>
+        <a class="btn" href="https://start.ng" rel="noopener">Join today's tournament</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="wrap footer"><span><b>start.ng</b> &middot; Good vibes. Good games.</span><span>Chop small, play more. Built by the HNG community.</span></footer>
+
+<script>
+(function () {
+  var games = [
+    ["3d Coin Collector", "Pleasure", "#2f7d5b", "#7bd88f"], ["Agege Rush", "Mustapha", "#c4472d", "#ffb347"],
+    ["Agent Protocol", "Fabbenco", "#3a4fd8", "#8fb3ff"], ["Alley Velocity", "Monarch", "#6b3fa0", "#e08fff"],
+    ["Along", "Yolanda", "#0f7f8a", "#8fe6d6"], ["Archery Master", "David", "#8a5a14", "#ffd36b"],
+    ["Ayo", "Hamzat", "#a2312b", "#ff9a8f"], ["Balloon Funride", "Agada", "#d83a8f", "#ffc2e0"]
+  ];
+  var grid = document.getElementById("grid");
+  var esc = function (s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); };
+  grid.innerHTML = games.map(function (g) {
+    return '<article class="stall"><div class="art" style="background:linear-gradient(135deg,' + g[2] + "," + g[3] + ')"><span class="sign" title="' + esc(g[0]) + '">' + esc(g[0]) + "</span><b>" + esc(g[0].charAt(0)) + '</b></div><div class="info"><span class="by">by ' + esc(g[1]) + '</span><a class="play" href="https://start.ng" rel="noopener" aria-label="Play ' + esc(g[0]) + '">Play</a></div></article>';
+  }).join("") +
+  '<article class="stall legend"><div class="art"><span class="sign">The Hangout</span><b>H</b><span class="tagline">start.ng original</span></div><div class="info"><span class="by">by start.ng</span><a class="play" href="https://start.ng" rel="noopener" aria-label="Play The Hangout">Play</a></div></article>';
+
+  var lights = document.getElementById("lights");
+  for (var i = 0; i < 28; i++) { var b = document.createElement("i"); b.style.animationDelay = (i % 7) * 0.35 + "s"; lights.appendChild(b); }
+
+  var fmt = new Intl.DateTimeFormat("en-GB", { timeZone: "Africa/Lagos", hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: false });
+  var clock = document.getElementById("clock");
+  function tick() { clock.textContent = fmt.format(new Date()); }
+  tick(); setInterval(tick, 1000);
+
+  document.getElementById("theme").addEventListener("click", function () {
+    var root = document.documentElement;
+    var dark = root.dataset.theme ? root.dataset.theme === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;
+    root.dataset.theme = dark ? "light" : "dark";
+  });
+})();
+</script>
+</body>
+</html>
